@@ -6,21 +6,35 @@
 <div class="container p-4">
     <div class="row">
         <div class="col-md-4">
-            <!--
-                <?php if( isset($_SESSION['mensaje']) ): ?>
-                <div class="alert alert-<?= $_SESSION['tipo_mensaje'] ?> alert-dismissible fade show" role="alert">
-                    <?= $_SESSION['mensaje'] ?>
+            
+                <!-- Si hay errores -->
+            @if($errors->any())
+                @foreach($errors->all() as $error)
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ $error }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endforeach
+            @endif
+
+            <!-- Mensaje exito -->
+            @if (session('status'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('status') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <?php session_unset(); endif; ?>-->
+            @endif
                 
                 <div class="card card-body">
                     
                     <h5 class="card-title">CREE LOS ROLES!</h5>
                     
-                    <form action="vistas/rol/crear.php" method='POST'>
+                    <form action="{{ route('role.crear') }}" method='POST'>
+                        @csrf
                         <div class="form-group">
                             <input class='form-control' name='nombre' type="text" placeholder='Nombre del rol'>
                         </div>

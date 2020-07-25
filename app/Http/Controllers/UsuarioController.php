@@ -36,7 +36,7 @@ class UsuarioController extends Controller
         ]);
 
         return redirect()->action('UsuarioController@index')
-                            ->with('status', 'Registro creado!');
+                            ->with('status', 'Usuario creado!');
     }
 
     public function editar($id){
