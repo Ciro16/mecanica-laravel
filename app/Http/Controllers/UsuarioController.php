@@ -62,4 +62,13 @@ class UsuarioController extends Controller
         return redirect()->action('UsuarioController@index')
                 ->with('status', 'Usuario actualizado con éxito');
     }
+
+    public function borrar(Request $request, $id){
+        DB::table('users')
+                ->where('id', '=', $request->id)
+                ->delete();
+
+        return redirect()->action('UsuarioController@index')
+                ->with('status', 'Usuario eliminado con éxito');
+    }
 }

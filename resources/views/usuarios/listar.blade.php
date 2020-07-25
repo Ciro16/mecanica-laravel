@@ -85,9 +85,13 @@
                                 <a class='ml-3' style='font-size: 20px' href="{{ route('usuario.editar', [ 'id' => $usuario->id ]) }}">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a class='ml-3 borrar' style='font-size: 20px' href="vistas/usuario/eliminar.php?id=<?php /*$row['id']*/ ?>">
-                                    <i class="fas fa-trash-alt"></i>
-                                </a>
+                                <form action="{{ route('usuario.borrar', ['id' => $usuario->id]) }}" method="POST" class='myform'>
+                                    @csrf
+                                    @method('DELETE')
+                                    <a class='ml-3 borrar' style='font-size: 20px' href="javascript:{}" onclick="document.querySelector('.myform').submit()">                                        
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
