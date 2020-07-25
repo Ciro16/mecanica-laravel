@@ -17,8 +17,8 @@
 
     <div class="collapse navbar-collapse ml-5" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link <?= isset($_GET['model']) && $_GET['model'] == 'usuario' ? 'active' : '' ?>" href="?model=usuario">Usuarios</a>
-            <a class="nav-item nav-link <?= isset($_GET['model']) && $_GET['model'] == 'rol' ? 'active' : '' ?>" href="?model=rol">Roles</a>
+            <a class="nav-item nav-link" href="{{ route('/') }}">Usuarios</a>
+            <a class="nav-item nav-link" href="{{ route('roles.listar') }}">Roles</a>
             <a class="nav-item nav-link <?= isset($_GET['model']) && $_GET['model'] == 'permiso' ? 'active' : '' ?>" href="?model=permiso">Permisos</a>
             <a class="nav-item nav-link <?= isset($_GET['model']) && $_GET['model'] == 'producto' ? 'active' : '' ?>" href="?model=producto">Productos</a>
             <a class="nav-item nav-link <?= isset($_GET['model']) && $_GET['model'] == 'orden' ? 'active' : '' ?>" href="?model=orden">Ordenes</a>
