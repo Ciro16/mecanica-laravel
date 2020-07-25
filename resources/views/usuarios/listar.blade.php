@@ -6,6 +6,7 @@
     <div class="row">
         <div class="col-md-4">
 
+            <!-- Si hay errores -->
             @if($errors->any())
                 @foreach($errors->all() as $error)
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -17,6 +18,7 @@
                 @endforeach
             @endif
 
+            <!-- Mensaje exito -->
             @if (session('status'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('status') }}
@@ -73,11 +75,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    /*$query = "SELECT * FROM usuarios";
-                    $result = mysqli_query($conexion, $query);
-
-                    while ($row = mysqli_fetch_assoc($result)):*/ ?>
                     @foreach($usuarios as $usuario)
                         <tr>
                             <td>{{ $usuario->nombre }}</td>
@@ -85,7 +82,7 @@
                             <td>{{ $usuario->email }}</td>
                             <td>{{ $usuario->usuario }}</td>
                             <td>
-                                <a class='ml-3' style='font-size: 20px' href="vistas/usuario/editar.php?id=<?php /*$row['id']*/ ?>">
+                                <a class='ml-3' style='font-size: 20px' href="{{ route('usuario.editar', [ 'id' => $usuario->id ]) }}">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <a class='ml-3 borrar' style='font-size: 20px' href="vistas/usuario/eliminar.php?id=<?php /*$row['id']*/ ?>">
@@ -94,7 +91,6 @@
                             </td>
                         </tr>
                     @endforeach
-                    <?php /* endwhile; */ ?>
                     
                 </tbody>
             </table>
