@@ -13,3 +13,4 @@
 
 //Rutas para usuarios
 Route::get('/', 'UsuarioController@index');
+Route::post('/usuario/crear', 'UsuarioController@crear')->name('usuario.crear');

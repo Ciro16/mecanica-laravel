@@ -6,34 +6,46 @@
     <div class="row">
         <div class="col-md-4">
 
-            <?php if( isset($_SESSION['mensaje']) ): ?>
-                <div class="alert alert-<?= $_SESSION['tipo_mensaje'] ?> alert-dismissible fade show" role="alert">
-                    <?= $_SESSION['mensaje'] ?>
+            @if($errors->any())
+                @foreach($errors->all() as $error)
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ $error }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endforeach
+            @endif
+
+            @if (session('status'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('status') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            <?php session_unset(); endif; ?>
+            @endif
 
             <div class="card card-body">
 
                 <h5 class="card-title">CREE LOS USUARIOS!</h5>
             
-                <form action="vistas/usuario/crear.php" method='POST'>
+                <form action="{{ route('usuario.crear') }}" method='POST'>
+                    @csrf
                     <div class="form-group">
-                        <input class='form-control' name='nombre' type="text" placeholder='Nombre'>
+                        <input class='form-control' name='nombre' type="text" value="{{old('nombre')}}" placeholder='Nombre'>
                     </div>
                 
                     <div class="form-group">
-                        <input class='form-control' name='apellido' type="text" placeholder='Apellido'>
+                        <input class='form-control' name='apellido' type="text" value="{{old('apellido')}}" placeholder='Apellido'>
                     </div>
 
                     <div class="form-group">
-                        <input class='form-control' name='correo' type="email" placeholder='Correo Electónico'>
+                        <input class='form-control' name='email' type="email" value="{{old('email')}}" placeholder='Correo Electónico'>
                     </div>
 
                     <div class="form-group">
-                        <input class='form-control' name='usuario' type="text" placeholder='Usuario'>
+                        <input class='form-control' name='usuario' type="text" value="{{old('usuario')}}" placeholder='Usuario'>
                     </div>
 
                     <div class="form-group">
@@ -66,11 +78,12 @@
                     $result = mysqli_query($conexion, $query);
 
                     while ($row = mysqli_fetch_assoc($result)):*/ ?>
+                    @foreach($usuarios as $usuario)
                         <tr>
-                            <td><?php /*$row['nombre'] */?></td>
-                            <td><?php /*$row['apellido']*/ ?></td>
-                            <td><?php /*$row['correo_electronico']*/ ?></td>
-                            <td><?php /*$row['usuario']*/ ?></td>
+                            <td>{{ $usuario->nombre }}</td>
+                            <td>{{ $usuario->apellido }}</td>
+                            <td>{{ $usuario->email }}</td>
+                            <td>{{ $usuario->usuario }}</td>
                             <td>
                                 <a class='ml-3' style='font-size: 20px' href="vistas/usuario/editar.php?id=<?php /*$row['id']*/ ?>">
                                     <i class="fas fa-edit"></i>
@@ -80,7 +93,7 @@
                                 </a>
                             </td>
                         </tr>
-                        
+                    @endforeach
                     <?php /* endwhile; */ ?>
                     
                 </tbody>
