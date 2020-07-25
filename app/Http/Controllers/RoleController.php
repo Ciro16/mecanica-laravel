@@ -29,4 +29,26 @@ class RoleController extends Controller
         return redirect()->action('RoleController@index')
                             ->with('status', 'Rol creado!');
     }
+
+    public function editar($id){
+        $rol = DB::table('roles')
+                        ->where('id', '=', $id)
+                        ->get();
+
+        $rol = $rol->first();
+
+        return view('roles.editar', compact('rol'));
+    }
+
+    public function actualizar(Request $request, $id){
+        $affected = DB::table('roles')
+                        ->where('id', '=', $id)
+                        ->update([
+                            'nombre' => $request->nombreact,
+                            'descripcion' => $request->descripcionact
+                        ]);
+        
+        return redirect()->action('RoleController@index')
+                ->with('status', 'Rol actualizado con éxito');
+    }
 }

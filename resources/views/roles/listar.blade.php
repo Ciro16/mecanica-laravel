@@ -64,7 +64,7 @@
                         <td>{{ $role->nombre }}</td>
                         <td>{{ $role->descripcion }}</td>
                         <td>
-                            <a class='ml-3' style='font-size: 20px' href="">
+                            <a class='ml-3' style='font-size: 20px' href="{{ route('role.editar', ['id' => $role->id]) }}">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <a class='ml-3 borrar' style='font-size: 20px' href="">
