@@ -13,6 +13,7 @@
 
 //Rutas para usuarios
 Route::get('/', 'UsuarioController@index')->name('/');
+Route::get('/usuario', 'UsuarioController@index')->name('/');
 Route::post('/usuario/crear', 'UsuarioController@crear')->name('usuario.crear');
 Route::get('/usuario/editar/{id}', 'UsuarioController@editar')->name('usuario.editar');
 Route::put('/usuario/actualizar/{id}', 'UsuarioController@actualizar')->name('usuario.actualizar');

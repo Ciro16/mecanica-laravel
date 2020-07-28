@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-4">
             
-                <!-- Si hay errores -->
+            <!-- Si hay errores -->
             @if($errors->any())
                 @foreach($errors->all() as $error)
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -40,12 +40,11 @@
                         </div>
                         
                         <div class="form-group">
-                        <textarea class='form-control' name='desc' rows="2" placeholder='Descripción'></textarea>
-                    </div>
+                            <textarea class='form-control' name='desc' rows="2" placeholder='Descripción'></textarea>
+                        </div>
                     
-                    <input type="submit" class='btn btn-success btn-block' value='Crear Rol' name='guardar'>
-
-                </form>
+                        <input type="submit" class='btn btn-success btn-block' value='Crear Rol' name='guardar'>
+                    </form>
             </div>    
         </div>
         <div class="col-md-8">
@@ -58,21 +57,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($roles as $role)
-                        
-                    <tr>
-                        <td>{{ $role->nombre }}</td>
-                        <td>{{ $role->descripcion }}</td>
-                        <td>
-                            <a class='ml-3' style='font-size: 20px' href="{{ route('role.editar', ['id' => $role->id]) }}">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a class='ml-3 borrar' style='font-size: 20px' href="">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    
+                    <?php $cont = 0 ?>
+
+                    @foreach ($roles as $role)                    
+                        <tr>
+                            <td>{{ $role->nombre }}</td>
+                            <td>{{ $role->descripcion }}</td>
+                            <td>
+                                <a class='ml-3' style='font-size: 20px' href="{{ route('role.editar', ['id' => $role->id]) }}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form action="{{ route('role.borrar', ['id' => $role->id]) }}" method="POST" class='myformroles'>
+                                    @csrf
+                                    @method('DELETE')
+                                    <a class='ml-3 borrar' style='font-size: 20px' href="javascript:{}" onclick="document.querySelectorAll('.myformroles')[{{ $cont }}].submit()">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </form>
+                            </td>
+                        </tr>
+                        <?php $cont++ ?>
                     @endforeach
                         
                     </tbody>

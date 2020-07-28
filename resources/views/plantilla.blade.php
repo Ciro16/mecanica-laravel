@@ -17,12 +17,10 @@
 
     <div class="collapse navbar-collapse ml-5" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="{{ route('/') }}">Usuarios</a>
-            <a class="nav-item nav-link" href="{{ route('roles.listar') }}">Roles</a>
+            <a class="nav-item nav-link {{ strpos( Request::url(), 'usuario' ) ? 'active' : '' }}" href="{{ route('/') }}">Usuarios</a>
+            <a class="nav-item nav-link {{ strpos( Request::url(), 'roles' ) ? 'active' : '' }}" href="{{ route('roles.listar') }}">Roles</a>
             <a class="nav-item nav-link <?= isset($_GET['model']) && $_GET['model'] == 'permiso' ? 'active' : '' ?>" href="?model=permiso">Permisos</a>
-            <a class="nav-item nav-link <?= isset($_GET['model']) && $_GET['model'] == 'producto' ? 'active' : '' ?>" href="?model=producto">Productos</a>
-            <a class="nav-item nav-link <?= isset($_GET['model']) && $_GET['model'] == 'orden' ? 'active' : '' ?>" href="?model=orden">Ordenes</a>
-        </div>
+       </div>
 
         <?php 
         if (session_status() == PHP_SESSION_NONE) {

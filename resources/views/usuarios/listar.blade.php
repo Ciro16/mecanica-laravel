@@ -75,6 +75,9 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    <?php $cont = 0; ?>
+
                     @foreach($usuarios as $usuario)
                         <tr>
                             <td>{{ $usuario->nombre }}</td>
@@ -85,15 +88,17 @@
                                 <a class='ml-3' style='font-size: 20px' href="{{ route('usuario.editar', [ 'id' => $usuario->id ]) }}">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="{{ route('usuario.borrar', ['id' => $usuario->id]) }}" method="POST" class='myform'>
+                                <form action="{{ route('usuario.borrar', ['id' => $usuario->id]) }}" method="POST" class='myformusers'>
                                     @csrf
                                     @method('DELETE')
-                                    <a class='ml-3 borrar' style='font-size: 20px' href="javascript:{}" onclick="document.querySelector('.myform').submit()">                                        
+                                    <a class='ml-3 borrar' style='font-size: 20px' href="javascript:{}" onclick="document.querySelectorAll('.myformusers')[{{$cont}}].submit()">                                        
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </form>
                             </td>
                         </tr>
+
+                        <?php $cont++; ?>
                     @endforeach
                     
                 </tbody>

@@ -51,4 +51,14 @@ class RoleController extends Controller
         return redirect()->action('RoleController@index')
                 ->with('status', 'Rol actualizado con éxito');
     }
+
+    public function borrar($id){
+        
+        DB::table('roles')
+                ->where('id', '=', $id)
+                ->delete();
+
+        return redirect()->action('RoleController@index')
+                ->with('status', 'Rol eliminado con éxito');
+    }
 }
