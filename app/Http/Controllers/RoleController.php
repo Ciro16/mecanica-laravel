@@ -20,7 +20,7 @@ class RoleController extends Controller
             ]
         );
 
-        $roles = DB::table('roles')
+        DB::table('roles')
                         ->insert([
             'nombre' => $request->input('nombre'),
             'descripcion' => $request->input('desc'),

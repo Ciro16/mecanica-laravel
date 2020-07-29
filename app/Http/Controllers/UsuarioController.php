@@ -25,7 +25,7 @@ class UsuarioController extends Controller
             ]
         );
 
-        $usuarios = DB::table('users')
+        DB::table('users')
                             ->insert([
             'usuario' => $request->input('usuario'),
             'nombre' => $request->input('nombre'),

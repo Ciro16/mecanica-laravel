@@ -19,7 +19,7 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link {{ strpos( Request::url(), 'usuario' ) ? 'active' : '' }}" href="{{ route('/') }}">Usuarios</a>
             <a class="nav-item nav-link {{ strpos( Request::url(), 'roles' ) ? 'active' : '' }}" href="{{ route('roles.listar') }}">Roles</a>
-            <a class="nav-item nav-link <?= isset($_GET['model']) && $_GET['model'] == 'permiso' ? 'active' : '' ?>" href="?model=permiso">Permisos</a>
+            <a class="nav-item nav-link {{ strpos( Request::url(), 'permisos' ) ? 'active' : '' }}" href="{{ route('permisos.listar') }}">Permisos</a>
        </div>
 
         <?php 
