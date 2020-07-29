@@ -32,3 +32,6 @@ Route::post('/permiso/crear', 'PermisoController@crear')->name('permiso.crear');
 Route::get('/permiso/editar/{id}', 'PermisoController@editar')->name('permiso.editar');
 Route::put('/permiso/actualizar/{id}', 'PermisoController@actualizar')->name('permiso.actualizar');
 Route::delete('/permiso/borrar/{id}', 'PermisoController@borrar')->name('permiso.borrar');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
