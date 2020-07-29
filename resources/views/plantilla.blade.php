@@ -22,21 +22,10 @@
             <a class="nav-item nav-link {{ strpos( Request::url(), 'permisos' ) ? 'active' : '' }}" href="{{ route('permisos.listar') }}">Permisos</a>
        </div>
 
-        <?php 
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-        ?>
-
         <span class="navbar-text ml-auto mr-5 text-primary">
             <?php echo isset($_SESSION['usuario_data']) ? "Bienvenido " . $_SESSION['usuario_data']['nombre'] . ' ' . $_SESSION['usuario_data']['apellido'] : ''; ?>
         </span>
 
-        <?php if( !isset($_SESSION['usuario_data']) ): ?>
-            <a class="btn btn-primary" href="?model=iniciarsesion" role="button">Iniciar Sesión</a>
-        <?php else: ?>
-            <a class="btn btn-danger" href="?model=cerrarsesion" role="button">Cerrar Sesión</a>
-        <?php endif; ?>
     </div>
 </nav>
 
